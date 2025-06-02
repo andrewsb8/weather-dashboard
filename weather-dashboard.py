@@ -1,10 +1,10 @@
 from textual.app import App
 from textual.widgets import Static
 
-class HelloTextualApp(App):
+class WeatherDashboard(App):
     def compose(self):
         yield Static("Hello, Textual!")
 
 if __name__ == "__main__":
-    app = HelloTextualApp()
+    app = WeatherDashboard()
     app.run()
