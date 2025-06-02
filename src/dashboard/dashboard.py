@@ -1,7 +1,8 @@
 from textual.app import App
 from textual.widgets import Static
 from src.weather.get_weather import get_weather
-from src.image_widget.image_widget import ImageWidget
+from src.dashboard.image_widget import ImageWidget
+
 
 class WeatherDashboard(App):
     CSS_PATH = "style.tcss"
