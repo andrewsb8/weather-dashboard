@@ -4,12 +4,18 @@ from src.weather.get_weather import get_weather
 from src.image_widget.image_widget import ImageWidget
 
 class WeatherDashboard(App):
+    CSS_PATH = "style.tcss"
+
     def __init__(self, testkw=False):
         self.testkw = testkw
+        self.weather_data = get_weather(testkw=self.testkw)
         super().__init__()
 
     def compose(self):
-        weather_data = get_weather(testkw=self.testkw)
         yield Static("Hello, Textual!")
-        yield Static(f"{weather_data["latitude"]}")
-        yield ImageWidget("path/to/your/image.png")
+        yield Static(f"{self.weather_data["latitude"]}")
+        yield ImageWidget("images/winter-images/1.jpg", (30, 30))
+
+    def on_mount(self):
+        pass
+        # self.screen.styles.background = "white"

@@ -4,9 +4,9 @@ from PIL import Image
 
 
 class ImageWidget(Widget):
-    def __init__(self, image_path: str):
+    def __init__(self, image_path: str, img_size: tuple):
         super().__init__()
-        img = Image.open("images/winter-images/1.jpg").resize((30, 30))
+        img = Image.open(image_path).resize(img_size)
         self.pixels = Pixels.from_image(img)
 
     def render(self):
