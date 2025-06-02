@@ -13,9 +13,10 @@ class WeatherDashboard(App):
         super().__init__()
 
     def compose(self):
-        yield Static(f"{self.weather_data["latitude"]}", classes="box")
+        yield Static(f"{self.weather_data["latitude"]}", classes="box", id="two-row")
         yield ImageWidget("images/winter-images/1.jpg", (30, 30))
-        yield Static("Daily Forecast Box", classes="box", id="two")
+        yield Static("yeah whatever")
+        yield Static("Daily Forecast Box", classes="box", id="two-column")
 
     def on_mount(self):
         pass

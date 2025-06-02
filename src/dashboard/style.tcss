@@ -1,11 +1,15 @@
 Screen {
     layout: grid;
-    grid-size: 2 2;
+    grid-size: 2 3;
+    background: white;
 }
 
-#two {
+#two-row {
+    row-span: 2;
+}
+
+#two-column {
     column-span: 2;
-    tint: magenta 40%;
 }
 
 .box {
