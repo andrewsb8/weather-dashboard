@@ -48,6 +48,7 @@ class WeatherDashboard(App):
                     for i in range(7):
                         with Vertical(classes="horizontal-box"):
                             yield Static(f'{self.weather_obj.weather["daily"]["time"][i]}', classes="center-text")
+                            yield ImageWidget("images/weather-icons/icons8-sun-20.png", (5,5))
                             yield Static(f'H/L: {self.weather_obj.weather["daily"]["temperature_2m_max"][i]}/{self.weather_obj.weather["daily"]["temperature_2m_min"][i]}', classes="center-text")
                             yield Static(f"Max UV: {self.weather_obj.weather["daily"]["uv_index_max"][i]}", classes="center-text")
                             yield Static(f'Precip %: {self.weather_obj.weather["daily"]["precipitation_probability_max"][i]}{self.weather_obj.weather["daily_units"]["precipitation_probability_max"]}', classes="center-text")
