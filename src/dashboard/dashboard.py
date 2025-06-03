@@ -37,7 +37,9 @@ class WeatherDashboard(App):
                 yield Static("Seven Day Forecast", classes="center-text")
                 with Horizontal():
                     for i in range(7):
-                        yield Static(f'Day {i+1}', classes="horizontal-box center-text")
+                        with Vertical(classes="horizontal-box"):
+                            yield Static(f'{self.weather_obj.weather["daily"]["time"][i]}', classes="center-text")
+                            yield Static(f'H/L: {self.weather_obj.weather["daily"]["temperature_2m_max"][i]}/{self.weather_obj.weather["daily"]["temperature_2m_min"][i]}', classes="center-text")
 
     def on_mount(self):
         pass
