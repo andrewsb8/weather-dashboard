@@ -36,15 +36,8 @@ class WeatherDashboard(App):
             with Container(classes="box-two-col"):
                 yield Static("Seven Day Forecast", classes="center-text")
                 with Horizontal():
-                    # probably want a loop here since I know what goes in each box
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-                    yield Static(f'first one', classes="horizontal-box")
-
+                    for i in range(7):
+                        yield Static(f'Day {i+1}', classes="horizontal-box center-text")
 
     def on_mount(self):
         pass
