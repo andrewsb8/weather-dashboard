@@ -8,16 +8,8 @@ Screen {
     grid-size: 2 3;
 }
 
-#two-row {
-    row-span: 2;
-}
-
-#two-row-im {
-    row-span: 2;
-}
-
-#two-column {
-    column-span: 2;
+.center-text {
+    text-align: center;
 }
 
 .box-two-row {
