@@ -17,7 +17,14 @@ class WeatherDashboard(App):
         with Grid(id="app-grid"):
             # Current Weather Container
             with Container(classes="box-two-row"):
-                yield Static(f"{self.weather_obj.weather["latitude"]}")
+                yield Static(f"Last Updated: {self.weather_obj.weather["current"]["time"].split("T")[0]} {self.weather_obj.weather["current"]["time"].split("T")[1]}")
+                yield Static(f"Temperature / Feels Like: {self.weather_obj.weather["current"]["temperature_2m"]} {self.weather_obj.weather["current_units"]["temperature_2m"]} / {self.weather_obj.weather["current"]["apparent_temperature"]} {self.weather_obj.weather["current_units"]["temperature_2m"]}")
+                yield Static(f"Humidity: {self.weather_obj.weather["current"]["relative_humidity_2m"]} {self.weather_obj.weather["current_units"]["relative_humidity_2m"]}")
+                yield Static(f"Wind Speed: {self.weather_obj.weather["current"]["wind_speed_10m"]} {self.weather_obj.weather["current_units"]["wind_speed_10m"]}")
+                yield Static(f"Cloud Cover: {self.weather_obj.weather["current"]["cloud_cover"]} {self.weather_obj.weather["current_units"]["cloud_cover"]}")
+                yield Static(f"Precipitation: {self.weather_obj.weather["current"]["precipitation"]} {self.weather_obj.weather["current_units"]["precipitation"]}")
+                yield Static(f"Rain: {self.weather_obj.weather["current"]["rain"]} {self.weather_obj.weather["current_units"]["rain"]}")
+                yield Static(f"Snowfall: {self.weather_obj.weather["current"]["snowfall"]} {self.weather_obj.weather["current_units"]["snowfall"]}")
 
             # Image Container
             with Container(classes="box-two-row"):

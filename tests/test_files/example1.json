@@ -3,9 +3,9 @@
   "longitude": -7.17229,
   "generationtime_ms": 0.2856254577636719,
   "utc_offset_seconds": -14400,
-  "timezone": "",
-  "timezone_abbreviation": "GMT-4",
-  "elevation": 6.0,
+  "timezone": "test",
+  "timezone_abbreviation": "test",
+  "elevation": 16.0,
   "current_units": {
     "time": "iso8601",
     "interval": "seconds",
