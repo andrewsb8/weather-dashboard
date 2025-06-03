@@ -17,12 +17,11 @@ class WeatherDashboard(App):
         yield Header("Custom")
         with Grid(id="app-grid"):
             # Current Weather Container
-            with Container(classes="box-two-row"):
+            with Container(classes="box"):
                 yield Static("Current Weather", classes="center-text")
                 yield Static(f"Last Updated: {self.weather_obj.weather["current"]["time"].split("T")[0]} {self.weather_obj.weather["current"]["time"].split("T")[1]}", classes="center-text")
                 yield Static("")
 
-                yield Static("Temperature Information", classes="center-text")
                 yield Static(f"Temperature / Feels Like: {self.weather_obj.weather["current"]["temperature_2m"]} {self.weather_obj.weather["current_units"]["temperature_2m"]} / {self.weather_obj.weather["current"]["apparent_temperature"]} {self.weather_obj.weather["current_units"]["temperature_2m"]}")
                 yield Static(f"Humidity: {self.weather_obj.weather["current"]["relative_humidity_2m"]} {self.weather_obj.weather["current_units"]["relative_humidity_2m"]}")
                 yield Static(f"Max UV Index: {self.weather_obj.weather["daily"]["uv_index_max"][0]}")
@@ -30,18 +29,16 @@ class WeatherDashboard(App):
                 yield Static(f"Wind Speed: {self.weather_obj.weather["current"]["wind_speed_10m"]} {self.weather_obj.weather["current_units"]["wind_speed_10m"]}")
                 yield Static("")
 
-                yield Static("Precipitation Information", classes="center-text")
                 yield Static(f"Total Precipitation: {self.weather_obj.weather["current"]["precipitation"]} {self.weather_obj.weather["current_units"]["precipitation"]}")
                 yield Static(f"Rain: {self.weather_obj.weather["current"]["rain"]} {self.weather_obj.weather["current_units"]["rain"]}")
                 yield Static(f"Snowfall: {self.weather_obj.weather["current"]["snowfall"]} {self.weather_obj.weather["current_units"]["snowfall"]}")
                 yield Static("")
 
-                yield Static("Daylight Information", classes="center-text")
                 yield Static(f"Sunrise: {self.weather_obj.weather["daily"]["sunrise"][0].split("T")[1]}")
                 yield Static(f"Sunset: {self.weather_obj.weather["daily"]["sunset"][0].split("T")[1]}")
 
             # Image Container
-            with Container(classes="box-two-row"):
+            with Container(classes="box"):
                 yield ImageWidget("images/winter-images/1.jpg", (30, 30))
 
             # Forecast Container

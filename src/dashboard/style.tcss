@@ -5,7 +5,7 @@ Screen {
 
 #app-grid {
     layout: grid;
-    grid-size: 2 3;
+    grid-size: 2 2;
 }
 
 .center-text {
@@ -19,10 +19,9 @@ Screen {
     border: solid green;
 }
 
-.box-two-row {
+.box {
     height: 100%;
     border: solid green;
-    row-span: 2;
 }
 
 .box-two-col {
