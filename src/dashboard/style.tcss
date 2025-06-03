@@ -12,6 +12,12 @@ Screen {
     text-align: center;
 }
 
+.horizontal-box {
+    height: 100%;
+    width: 14.25%;
+    border: solid green;
+}
+
 .box-two-row {
     height: 100%;
     border: solid green;

@@ -1,6 +1,6 @@
 from textual.app import App
 from textual.widgets import Static, Header
-from textual.containers import Grid, Container, Horizontal
+from textual.containers import Grid, Container, Horizontal, Vertical
 from src.weather.weather import Weather
 from src.dashboard.image_widget import ImageWidget
 
@@ -36,10 +36,14 @@ class WeatherDashboard(App):
             with Container(classes="box-two-col"):
                 yield Static("Seven Day Forecast", classes="center-text")
                 with Horizontal():
-                    yield Static(f'first one')
-                    # below doesn't show up
-                    yield Static(f'second one')
-                    yield Static(f'third one')
+                    # probably want a loop here since I know what goes in each box
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
+                    yield Static(f'first one', classes="horizontal-box")
 
 
     def on_mount(self):
