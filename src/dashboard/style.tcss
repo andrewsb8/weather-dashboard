@@ -1,10 +1,18 @@
 Screen {
+    background: white;
+    color: black;
+}
+
+#app-grid {
     layout: grid;
     grid-size: 2 3;
-    background: white;
 }
 
 #two-row {
+    row-span: 2;
+}
+
+#two-row-im {
     row-span: 2;
 }
 
@@ -12,7 +20,14 @@ Screen {
     column-span: 2;
 }
 
-.box {
+.box-two-row {
     height: 100%;
     border: solid green;
+    row-span: 2;
+}
+
+.box-two-col {
+    height: 100%;
+    border: solid green;
+    column-span: 2;
 }

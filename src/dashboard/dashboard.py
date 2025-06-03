@@ -1,5 +1,6 @@
 from textual.app import App
 from textual.widgets import Static
+from textual.containers import Grid, Container
 from src.weather.weather import Weather
 from src.dashboard.image_widget import ImageWidget
 
@@ -13,11 +14,18 @@ class WeatherDashboard(App):
         super().__init__()
 
     def compose(self):
-        yield Static(f"{self.weather_obj.weather["latitude"]}", classes="box", id="two-row")
-        yield ImageWidget("images/winter-images/1.jpg", (30, 30))
-        yield Static("yeah whatever")
-        yield Static("Daily Forecast Box", classes="box", id="two-column")
+        with Grid(id="app-grid"):
+            # Current Weather Container
+            with Container(classes="box-two-row"):
+                yield Static(f"{self.weather_obj.weather["latitude"]}")
+
+            # Image Container
+            with Container(classes="box-two-row"):
+                yield ImageWidget("images/winter-images/1.jpg", (30, 30))
+
+            # Forecast Container
+            with Container(classes="box-two-col"):
+                yield Static("Daily Forecast Box")
 
     def on_mount(self):
         pass
-        # self.screen.styles.background = "white"
