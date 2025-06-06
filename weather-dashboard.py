@@ -1,4 +1,5 @@
 import sys
+from PyQt5.QtWidgets import QApplication
 from src.dashboard.dashboard import WeatherDashboard
 
 
@@ -9,4 +10,8 @@ if __name__ == "__main__":
         exit(1)
     elif len(sys.argv) == 2 and sys.argv[-1] == "test":
         testkw = True
-    WeatherDashboard(testkw).run()
+
+    app = QApplication(sys.argv)
+    dashboard = WeatherDashboard()
+    dashboard.show()
+    sys.exit(app.exec_())

@@ -1,58 +1,96 @@
-from textual.app import App
-from textual.widgets import Static, Header
-from textual.containers import Grid, Container, Horizontal, Vertical
-from src.weather.weather import Weather
+import sys
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QGridLayout, QGroupBox
+)
+from PyQt5.QtGui import QPixmap
 from src.dashboard.image_widget import ImageWidget
+from src.weather.weather import Weather
 
-
-class WeatherDashboard(App):
-    CSS_PATH = "style.tcss"
-
+class WeatherDashboard(QWidget):
     def __init__(self, testkw=False):
+        super().__init__()
         self.testkw = testkw
         self.weather_obj = Weather(testkw=self.testkw)
-        super().__init__()
+        self.init_ui()
 
-    def compose(self):
-        yield Header("Custom")
-        with Grid(id="app-grid"):
-            # Current Weather Container
-            with Container(classes="box"):
-                yield Static("Current Weather", classes="center-text")
-                yield Static(f"Last Updated: {self.weather_obj.weather["current"]["time"].split("T")[0]} {self.weather_obj.weather["current"]["time"].split("T")[1]}", classes="center-text")
-                yield Static("")
+    def init_ui(self):
+        self.setWindowTitle("Weather Dashboard")
+        main_layout = QGridLayout()
 
-                yield Static(f"Temperature / Feels Like: {self.weather_obj.weather["current"]["temperature_2m"]} {self.weather_obj.weather["current_units"]["temperature_2m"]} / {self.weather_obj.weather["current"]["apparent_temperature"]} {self.weather_obj.weather["current_units"]["temperature_2m"]}")
-                yield Static(f"Humidity: {self.weather_obj.weather["current"]["relative_humidity_2m"]} {self.weather_obj.weather["current_units"]["relative_humidity_2m"]}")
-                yield Static(f"Max UV Index: {self.weather_obj.weather["daily"]["uv_index_max"][0]}")
-                yield Static(f"Cloud Cover: {self.weather_obj.weather["current"]["cloud_cover"]} {self.weather_obj.weather["current_units"]["cloud_cover"]}")
-                yield Static(f"Wind Speed: {self.weather_obj.weather["current"]["wind_speed_10m"]} {self.weather_obj.weather["current_units"]["wind_speed_10m"]}")
-                yield Static("")
+        # --- Current Weather Container ---
+        current_weather_box = QGroupBox("Current Weather")
+        current_layout = QVBoxLayout()
+        w = self.weather_obj.weather
 
-                yield Static(f"Total Precipitation: {self.weather_obj.weather["current"]["precipitation"]} {self.weather_obj.weather["current_units"]["precipitation"]}")
-                yield Static(f"Rain: {self.weather_obj.weather["current"]["rain"]} {self.weather_obj.weather["current_units"]["rain"]}")
-                yield Static(f"Snowfall: {self.weather_obj.weather["current"]["snowfall"]} {self.weather_obj.weather["current_units"]["snowfall"]}")
-                yield Static("")
+        current_layout.addWidget(QLabel(
+            f"Last Updated: {w['current']['time'].split('T')[0]} {w['current']['time'].split('T')[1]}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Temperature / Feels Like: {w['current']['temperature_2m']} {w['current_units']['temperature_2m']} / "
+            f"{w['current']['apparent_temperature']} {w['current_units']['temperature_2m']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Humidity: {w['current']['relative_humidity_2m']} {w['current_units']['relative_humidity_2m']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Max UV Index: {w['daily']['uv_index_max'][0]}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Cloud Cover: {w['current']['cloud_cover']} {w['current_units']['cloud_cover']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Wind Speed: {w['current']['wind_speed_10m']} {w['current_units']['wind_speed_10m']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Total Precipitation: {w['current']['precipitation']} {w['current_units']['precipitation']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Rain: {w['current']['rain']} {w['current_units']['rain']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Snowfall: {w['current']['snowfall']} {w['current_units']['snowfall']}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Sunrise: {w['daily']['sunrise'][0].split('T')[1]}"
+        ))
+        current_layout.addWidget(QLabel(
+            f"Sunset: {w['daily']['sunset'][0].split('T')[1]}"
+        ))
+        current_weather_box.setLayout(current_layout)
 
-                yield Static(f"Sunrise: {self.weather_obj.weather["daily"]["sunrise"][0].split("T")[1]}")
-                yield Static(f"Sunset: {self.weather_obj.weather["daily"]["sunset"][0].split("T")[1]}")
+        # --- Image Container ---
+        image_box = QGroupBox("Weather Image")
+        image_layout = QVBoxLayout()
+        image_layout.addWidget(ImageWidget("images/winter-images/1.jpg", size=(120, 120)))
+        image_box.setLayout(image_layout)
 
-            # Image Container
-            with Container(classes="box"):
-                yield ImageWidget("images/winter-images/1.jpg", (30, 30))
+        # --- Forecast Container ---
+        forecast_box = QGroupBox("Seven Day Forecast")
+        forecast_layout = QHBoxLayout()
+        for i in range(7):
+            day_layout = QVBoxLayout()
+            day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
+            day_layout.addWidget(ImageWidget("images/weather-icons/icons8-sun-20.png", size=(20, 20)))
+            day_layout.addWidget(QLabel(
+                f"H/L: {w['daily']['temperature_2m_max'][i]}/{w['daily']['temperature_2m_min'][i]}"
+            ))
+            day_layout.addWidget(QLabel(
+                f"Max UV: {w['daily']['uv_index_max'][i]}"
+            ))
+            day_layout.addWidget(QLabel(
+                f"Precip %: {w['daily']['precipitation_probability_max'][i]}{w['daily_units']['precipitation_probability_max']}"
+            ))
+            day_layout.addWidget(QLabel(
+                f"Sunup/down: {w['daily']['sunrise'][i].split('T')[1]}/{w['daily']['sunset'][i].split('T')[1]}"
+            ))
+            forecast_col = QWidget()
+            forecast_col.setLayout(day_layout)
+            forecast_layout.addWidget(forecast_col)
+        forecast_box.setLayout(forecast_layout)
 
-            # Forecast Container
-            with Container(classes="box-two-col"):
-                yield Static("Seven Day Forecast", classes="center-text")
-                with Horizontal():
-                    for i in range(7):
-                        with Vertical(classes="horizontal-box"):
-                            yield Static(f'{self.weather_obj.weather["daily"]["time"][i]}', classes="center-text")
-                            yield ImageWidget("images/weather-icons/icons8-sun-20.png", (5,5))
-                            yield Static(f'H/L: {self.weather_obj.weather["daily"]["temperature_2m_max"][i]}/{self.weather_obj.weather["daily"]["temperature_2m_min"][i]}', classes="center-text")
-                            yield Static(f"Max UV: {self.weather_obj.weather["daily"]["uv_index_max"][i]}", classes="center-text")
-                            yield Static(f'Precip %: {self.weather_obj.weather["daily"]["precipitation_probability_max"][i]}{self.weather_obj.weather["daily_units"]["precipitation_probability_max"]}', classes="center-text")
-                            yield Static(f"Sunup/down: {self.weather_obj.weather["daily"]["sunrise"][i].split("T")[1]}/{self.weather_obj.weather["daily"]["sunset"][i].split("T")[1]}", classes="center-text")
+        # --- Add to main layout ---
+        main_layout.addWidget(current_weather_box, 0, 0)
+        main_layout.addWidget(image_box, 0, 1)
+        main_layout.addWidget(forecast_box, 1, 0, 1, 2)
 
-    def on_mount(self):
-        pass
+        self.setLayout(main_layout)

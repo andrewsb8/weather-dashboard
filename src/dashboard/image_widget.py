@@ -1,15 +1,14 @@
-from textual.widget import Widget
-from rich_pixels import Pixels
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from PIL import Image
 
 
-class ImageWidget(Widget):
-    def __init__(self, image_path: str, img_size: tuple=(-1,-1)):
-        super().__init__()
-        img = Image.open(image_path)
-        if img_size != (-1,-1):
-            img = img.resize(img_size)
-        self.pixels = Pixels.from_image(img)
-
-    def render(self):
-        return self.pixels
+class ImageWidget(QLabel):
+    def __init__(self, image_path, size=None, parent=None):
+        super().__init__(parent)
+        pixmap = QPixmap(image_path)
+        if size:
+            pixmap = pixmap.scaled(size[0], size[1])
+        self.setPixmap(pixmap)
+        self.setAlignment(Qt.AlignCenter)
