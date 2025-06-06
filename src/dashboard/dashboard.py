@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QGridLayout, QGroupBox
 )
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from src.dashboard.image_widget import ImageWidget
 from src.weather.weather import Weather
@@ -12,6 +13,10 @@ class WeatherDashboard(QWidget):
         self.testkw = testkw
         self.weather_obj = Weather(testkw=self.testkw)
         self.init_ui()
+        app = QApplication.instance()
+        screen = app.primaryScreen()
+        geometry = screen.availableGeometry()
+        self.setGeometry(geometry)
 
     def init_ui(self):
         self.setWindowTitle("Weather Dashboard")
@@ -65,9 +70,9 @@ class WeatherDashboard(QWidget):
         image_box.setLayout(image_layout)
 
         # --- Forecast Container ---
-        forecast_box = QGroupBox("Seven Day Forecast")
+        forecast_box = QGroupBox("Five Day Forecast")
         forecast_layout = QHBoxLayout()
-        for i in range(7):
+        for i in range(5):
             day_layout = QVBoxLayout()
             day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
             day_layout.addWidget(ImageWidget("images/weather-icons/icons8-sun-20.png", size=(20, 20)))

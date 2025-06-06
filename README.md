@@ -2,5 +2,5 @@
 
 This project is a small weather dashboard made using python and the following tools:
 
-- Textual for TUI Design
+- PyQt5 for GUI
 - Open Meteo for weather API
