@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtSvg import QSvgWidget
 from src.dashboard.image_widget import ImageWidget
 from src.weather.weather import Weather
 
@@ -66,7 +67,7 @@ class WeatherDashboard(QWidget):
         # --- Image Container ---
         image_box = QGroupBox("Weather Image")
         image_layout = QVBoxLayout()
-        image_layout.addWidget(ImageWidget("images/winter-images/1.jpg", size=(120, 120)))
+        image_layout.addWidget(ImageWidget("images/winter-images/1.jpg", size=(600, 600)))
         image_box.setLayout(image_layout)
 
         # --- Forecast Container ---
@@ -75,7 +76,9 @@ class WeatherDashboard(QWidget):
         for i in range(5):
             day_layout = QVBoxLayout()
             day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
-            day_layout.addWidget(ImageWidget("images/weather-icons/icons8-sun-20.png", size=(20, 20)))
+            weath_icon = QSvgWidget('images/weather-icons/wi-day-sunny.svg')
+            weath_icon.setFixedSize(200,200)
+            day_layout.addWidget(weath_icon)
             day_layout.addWidget(QLabel(
                 f"H/L: {w['daily']['temperature_2m_max'][i]}/{w['daily']['temperature_2m_min'][i]}"
             ))
