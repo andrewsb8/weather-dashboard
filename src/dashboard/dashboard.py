@@ -14,10 +14,7 @@ class WeatherDashboard(QWidget):
         self.testkw = testkw
         self.weather_obj = Weather(testkw=self.testkw)
         self.init_ui()
-        app = QApplication.instance()
-        screen = app.primaryScreen()
-        geometry = screen.availableGeometry()
-        self.setGeometry(geometry)
+        self.set_fullscreen()
 
     def init_ui(self):
         w = self.weather_obj.weather
@@ -111,3 +108,9 @@ class WeatherDashboard(QWidget):
         main_layout.addWidget(forecast_box, 1, 0, 1, 2)
 
         self.setLayout(main_layout)
+
+    def set_fullscreen(self):
+        app = QApplication.instance()
+        screen = app.primaryScreen()
+        geometry = screen.availableGeometry()
+        self.setGeometry(geometry)
