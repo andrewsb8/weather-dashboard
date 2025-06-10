@@ -12,6 +12,6 @@ if __name__ == "__main__":
         testkw = True
 
     app = QApplication(sys.argv)
-    dashboard = WeatherDashboard()
+    dashboard = WeatherDashboard(testkw=testkw)
     dashboard.show()
     sys.exit(app.exec_())
