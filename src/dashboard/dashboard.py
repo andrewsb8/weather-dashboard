@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (
     QGridLayout,
     QGroupBox,
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 from src.dashboard.image_widget import ImageWidget
 from src.weather.weather import Weather
@@ -18,6 +18,12 @@ class WeatherDashboard(QWidget):
     def __init__(self, testkw=False):
         super().__init__()
         self.testkw = testkw
+        self.init_dashboard()
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.init_dashboard)
+        self.timer.start(3600000) # update every hour
+
+    def init_dashboard(self):
         self.weather_obj = Weather(testkw=self.testkw)
         self.init_ui()
         self.set_fullscreen()
