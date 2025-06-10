@@ -17,7 +17,7 @@ class ImageWidget(QLabel):
     def svg_image(self):
         self.svgmap = QSvgWidget(self.image_path)
         if self.size:
-            self.svgmap.setFixedSize(200,200)
+            self.svgmap.setFixedSize(200, 200)
 
     def image(self):
         self.pixmap = QPixmap(self.image_path)
