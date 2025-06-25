@@ -3,7 +3,7 @@ import argparse
 
 class Config(object):
     def __init__(self, args=None):
-        self.__prog__ = "weather-dashboard"
+        self.__prog__ = "weather-dashboard.py"
         self.args = self._parse(args)
         print(self.args.size)
 
