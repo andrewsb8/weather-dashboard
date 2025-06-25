@@ -1,17 +1,13 @@
 import sys
+from src.config.config import Config
 from PyQt5.QtWidgets import QApplication
 from src.dashboard.dashboard import WeatherDashboard
 
 
 if __name__ == "__main__":
-    testkw = False
-    if len(sys.argv) > 2:
-        print("Too many arguments. Exiting.")
-        exit(1)
-    elif len(sys.argv) == 2 and sys.argv[-1] == "test":
-        testkw = True
+    config = Config()
 
     app = QApplication(sys.argv)
-    dashboard = WeatherDashboard(testkw=testkw)
+    dashboard = WeatherDashboard(config=config)
     dashboard.show()
     sys.exit(app.exec_())

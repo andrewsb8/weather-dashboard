@@ -15,16 +15,16 @@ from src.weather.weather import Weather
 
 
 class WeatherDashboard(QWidget):
-    def __init__(self, testkw=False):
+    def __init__(self, config):
         super().__init__()
-        self.testkw = testkw
+        self.config = config
         self.init_dashboard()
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.init_dashboard)
         self.timer.start(3600000) # update every hour
 
     def init_dashboard(self):
-        self.weather_obj = Weather(testkw=self.testkw)
+        self.weather_obj = Weather(testkw=self.config.args.test)
         self.init_ui()
         self.set_fullscreen()
 
