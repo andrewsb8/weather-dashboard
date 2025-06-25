@@ -22,6 +22,10 @@ class WeatherDashboard(QWidget):
         if self.config.args.update:
             self.set_timer(self.config.args.time)
 
+        if self.config.args.screenshot:
+            # takes screenshot after second of delay
+            QTimer.singleShot(1000, self.take_screenshot_and_exit)
+
     def init_dashboard(self):
         self.weather_obj = Weather(testkw=self.config.args.test)
         if self.config.args.size is not None:
@@ -161,3 +165,8 @@ class WeatherDashboard(QWidget):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.init_dashboard)
         self.timer.start(time)
+
+    def take_screenshot_and_exit(self):
+        pixmap = self.grab()
+        pixmap.save(self.config.args.path)
+        QApplication.instance().quit()

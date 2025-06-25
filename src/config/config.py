@@ -18,11 +18,6 @@ class Config(object):
             epilog="Please report bugs to: https://github.com/andrewsb8/weather-dashboard/issues",
         )
         self.parser.add_argument(
-            "--test",
-            action="store_true",
-            help="Use test data instead of using weather API.",
-        )
-        self.parser.add_argument(
             "--update",
             action="store_true",
             help="Use test data instead of using weather API.",
@@ -40,6 +35,23 @@ class Config(object):
             nargs="*",
             default=None,
             help="Window dimension for dashboard",
+        )
+        self.parser.add_argument(
+            "--screenshot",
+            action="store_true",
+            help="Take screenshot of window and quit.",
+        )
+        self.parser.add_argument(
+            "-p",
+            "--path",
+            type=str,
+            default="./weather-dashboard.png",
+            help="Path to save screenshot of image. Only works with --screenshot. Default: Current directory.",
+        )
+        self.parser.add_argument(
+            "--test",
+            action="store_true",
+            help="Use test data instead of using weather API.",
         )
 
         if args is None:
