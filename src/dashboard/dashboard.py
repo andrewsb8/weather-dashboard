@@ -25,8 +25,11 @@ class WeatherDashboard(QWidget):
 
     def init_dashboard(self):
         self.weather_obj = Weather(testkw=self.config.args.test)
+        if self.config.args.size is not None:
+            self.set_window_size(self.config.args.size)
+        else:
+            self.set_fullscreen()
         self.init_ui()
-        self.set_fullscreen()
 
     def init_ui(self):
         w = self.weather_obj.weather
@@ -144,6 +147,10 @@ class WeatherDashboard(QWidget):
         main_layout.addWidget(forecast_box, 1, 0, 1, 2)
 
         self.setLayout(main_layout)
+
+    def set_window_size(self, size):
+        self.setFixedWidth(int(size[0])) # height
+        self.setFixedHeight(int(size[1])) # height
 
     def set_fullscreen(self):
         app = QApplication.instance()
