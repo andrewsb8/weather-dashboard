@@ -19,9 +19,8 @@ class WeatherDashboard(QWidget):
         super().__init__()
         self.config = config
         self.init_dashboard()
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.init_dashboard)
-        self.timer.start(3600000) # update every hour
+        if self.config.args.update:
+            self.set_timer(self.config.args.time)
 
     def init_dashboard(self):
         self.weather_obj = Weather(testkw=self.config.args.test)
@@ -157,3 +156,8 @@ class WeatherDashboard(QWidget):
         screen = app.primaryScreen()
         geometry = screen.availableGeometry()
         self.setGeometry(geometry)
+
+    def set_timer(self, time):
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.init_dashboard)
+        self.timer.start(time)

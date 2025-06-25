@@ -19,12 +19,21 @@ class Config(object):
         )
         self.parser.add_argument("--test", action="store_true",
                             help="Use test data instead of using weather API.")
+        self.parser.add_argument("--update", action="store_true",
+                            help="Use test data instead of using weather API.")
+        self.parser.add_argument(
+            "-t",
+            "--time",
+            type=int,
+            default=3600000,
+            help="Update dashboard frequency in ms. Only effective with --update. Default: 3600000 ms (1 hour).",
+        )
         self.parser.add_argument(
             "-s",
             "--size",
             nargs='*',
             default=None,
-            help="Input codon sequence string",
+            help="Window dimension for dashboard",
         )
 
         if args is None:
