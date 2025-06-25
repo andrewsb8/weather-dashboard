@@ -46,7 +46,7 @@ class Config(object):
             "--path",
             type=str,
             default="./weather-dashboard.png",
-            help="Path to save screenshot of image. Only works with --screenshot. Default: Current directory.",
+            help="Path to save screenshot of image. Only works with --screenshot. Default: ./weather-dashboard.png (in current directory).",
         )
         self.parser.add_argument(
             "--test",
