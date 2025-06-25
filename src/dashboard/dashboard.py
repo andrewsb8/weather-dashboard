@@ -94,7 +94,7 @@ class WeatherDashboard(QWidget):
 
         current_weather_layout.addWidget(
             ImageWidget(
-                "images/weather-icons/wi-day-sunny.svg", svg=True, size=(200, 200)
+                "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
             ).svgmap
         )
 
@@ -104,7 +104,7 @@ class WeatherDashboard(QWidget):
         image_box = QGroupBox("Weather Image")
         image_layout = QVBoxLayout()
         image_layout.addWidget(
-            ImageWidget("images/winter-images/1.jpg", svg=False, size=(600, 600))
+            ImageWidget("images/winter-images/1.jpg", svg=False, size=(60, 60))
         )
         image_box.setLayout(image_layout)
 
@@ -116,7 +116,7 @@ class WeatherDashboard(QWidget):
             day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
             day_layout.addWidget(
                 ImageWidget(
-                    "images/weather-icons/wi-day-sunny.svg", svg=True, size=(200, 200)
+                    "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
                 ).svgmap
             )
             day_layout.addWidget(
