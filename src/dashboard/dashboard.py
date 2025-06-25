@@ -148,8 +148,8 @@ class WeatherDashboard(QWidget):
         self.setLayout(main_layout)
 
     def set_window_size(self, size):
-        self.setFixedWidth(int(size[0])) # height
-        self.setFixedHeight(int(size[1])) # height
+        self.setFixedWidth(int(size[0]))  # height
+        self.setFixedHeight(int(size[1]))  # height
 
     def set_fullscreen(self):
         app = QApplication.instance()

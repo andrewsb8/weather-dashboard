@@ -17,10 +17,16 @@ class Config(object):
             description="A PyQt5 Application Displaying Weather Information",
             epilog="Please report bugs to: https://github.com/andrewsb8/weather-dashboard/issues",
         )
-        self.parser.add_argument("--test", action="store_true",
-                            help="Use test data instead of using weather API.")
-        self.parser.add_argument("--update", action="store_true",
-                            help="Use test data instead of using weather API.")
+        self.parser.add_argument(
+            "--test",
+            action="store_true",
+            help="Use test data instead of using weather API.",
+        )
+        self.parser.add_argument(
+            "--update",
+            action="store_true",
+            help="Use test data instead of using weather API.",
+        )
         self.parser.add_argument(
             "-t",
             "--time",
@@ -31,7 +37,7 @@ class Config(object):
         self.parser.add_argument(
             "-s",
             "--size",
-            nargs='*',
+            nargs="*",
             default=None,
             help="Window dimension for dashboard",
         )
