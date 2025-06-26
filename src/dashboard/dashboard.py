@@ -108,7 +108,7 @@ class WeatherDashboard(QWidget):
         image_box = QGroupBox("Weather Image")
         image_layout = QVBoxLayout()
         image_layout.addWidget(
-            ImageWidget("images/winter-images/1.jpg", svg=False, size=(60, 60))
+            ImageWidget("images/winter-images/1.jpg", svg=False, size=(200, 200))
         )
         image_box.setLayout(image_layout)
 
