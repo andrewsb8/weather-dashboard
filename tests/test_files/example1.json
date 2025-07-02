@@ -80,7 +80,7 @@
       "2025-06-08T20:27"
     ],
     "uv_index_max": [7.6, 7.9, 7.9, 7.9, 7.85, 7.05, 7.2],
-    "precipitation_probability_max": [1, 1, 0, 10, 36, 42, 29],
+    "precipitation_probability_max": [1, 50, 0, 10, 36, 42, 29],
     "precipitation_sum": [0.0, 30.0, 0.0, 0.0, 0.0, 0.012, 0.0],
     "precipitation_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0]
   }
