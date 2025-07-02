@@ -36,6 +36,7 @@ class WeatherDashboard(QWidget):
 
     def init_ui(self):
         w = self.weather_obj.weather
+        wi = self.weather_obj.weather_imgs
 
         self.setWindowTitle("Weather Dashboard")
         main_layout = QGridLayout()
@@ -50,7 +51,7 @@ class WeatherDashboard(QWidget):
         )
         current_weather_layout.addWidget(
             ImageWidget(
-                "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
+                wi["current"], svg=True, size=(60, 60)
             ).svgmap
         )
         current_weather_layout.addWidget(
@@ -103,7 +104,7 @@ class WeatherDashboard(QWidget):
         image_box = QGroupBox("Weather Image")
         image_layout = QVBoxLayout()
         image_layout.addWidget(
-            ImageWidget("images/winter-images/1.jpg", svg=False, size=(200, 200))
+            ImageWidget(wi["w_img"], svg=False, size=(200, 200))
         )
         image_box.setLayout(image_layout)
 
@@ -117,7 +118,7 @@ class WeatherDashboard(QWidget):
             day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
             day_layout.addWidget(
                 ImageWidget(
-                    "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
+                    wi["daily"][i], svg=True, size=(60, 60)
                 ).svgmap
             )
             day_layout.addWidget(
