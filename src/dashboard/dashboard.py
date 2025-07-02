@@ -134,7 +134,7 @@ class WeatherDashboard(QWidget):
             )
             day_layout.addWidget(
                 QLabel(
-                    f"Sunup/down: {w['daily']['sunrise'][i].split('T')[1]}/{w['daily']['sunset'][i].split('T')[1]}"
+                    f"Sunup: {w['daily']['sunrise'][i].split('T')[1]}"
                 )
             )
             forecast_col = QWidget()

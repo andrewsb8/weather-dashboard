@@ -38,7 +38,7 @@ class Weather(object):
     def get_forecast_img_paths(self, path):
         img_list = []
         for i in range(2):
-            if self.weather["daily"]["precipitation_sum"][i] > 20.0:
+            if self.weather["daily"]["precipitation_probability_max"][i] > 50.0:
                 img_list.append(path + "wi-rain.svg")
             else:
                 img_list.append(path + "wi-day-sunny.svg")
