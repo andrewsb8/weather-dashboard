@@ -42,64 +42,59 @@ class WeatherDashboard(QWidget):
 
         # --- Current Weather Container ---
         current_weather_box = QGroupBox("Current Weather")
-        current_weather_layout = QHBoxLayout()
-        current_weather_info = QVBoxLayout()
-        current_weather_info.addWidget(
+        current_weather_layout = QVBoxLayout()
+        current_weather_layout.addWidget(
             QLabel(
                 f"Last Updated: {w['current']['time'].split('T')[0]} {w['current']['time'].split('T')[1]}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
+            ImageWidget(
+                "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
+            ).svgmap
+        )
+        current_weather_layout.addWidget(
             QLabel(
                 f"Temperature / Feels Like: {w['current']['temperature_2m']} {w['current_units']['temperature_2m']} / "
                 f"{w['current']['apparent_temperature']} {w['current_units']['temperature_2m']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(
                 f"Humidity: {w['current']['relative_humidity_2m']} {w['current_units']['relative_humidity_2m']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(f"Max UV Index: {w['daily']['uv_index_max'][0]}")
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(
                 f"Cloud Cover: {w['current']['cloud_cover']} {w['current_units']['cloud_cover']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(
                 f"Wind Speed: {w['current']['wind_speed_10m']} {w['current_units']['wind_speed_10m']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(
                 f"Total Precipitation: {w['current']['precipitation']} {w['current_units']['precipitation']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(f"Rain: {w['current']['rain']} {w['current_units']['rain']}")
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(
                 f"Snowfall: {w['current']['snowfall']} {w['current_units']['snowfall']}"
             )
         )
-        current_weather_info.addWidget(
+        current_weather_layout.addWidget(
             QLabel(f"Sunrise: {w['daily']['sunrise'][0].split('T')[1]}")
         )
-        current_weather_info.addWidget(
-            QLabel(f"Sunset: {w['daily']['sunset'][0].split('T')[1]}")
-        )
-        current_weather_col = QWidget()
-        current_weather_col.setLayout(current_weather_info)
-        current_weather_layout.addWidget(current_weather_col)
-
         current_weather_layout.addWidget(
-            ImageWidget(
-                "images/weather-icons/wi-day-sunny.svg", svg=True, size=(60, 60)
-            ).svgmap
+            QLabel(f"Sunset: {w['daily']['sunset'][0].split('T')[1]}")
         )
 
         current_weather_box.setLayout(current_weather_layout)
@@ -113,10 +108,12 @@ class WeatherDashboard(QWidget):
         image_box.setLayout(image_layout)
 
         # --- Forecast Container ---
-        forecast_box = QGroupBox("Five Day Forecast")
+        forecast_box = QGroupBox("Two Day Forecast")
         forecast_layout = QHBoxLayout()
-        for i in range(5):
+        labels = ["Today", "Tomorrow"]
+        for i in range(2):
             day_layout = QVBoxLayout()
+            day_layout.addWidget(QLabel(labels[i]))
             day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
             day_layout.addWidget(
                 ImageWidget(
@@ -145,9 +142,9 @@ class WeatherDashboard(QWidget):
         forecast_box.setLayout(forecast_layout)
 
         # --- Add to main layout ---
-        main_layout.addWidget(current_weather_box, 0, 0)
+        main_layout.addWidget(current_weather_box, 0, 0, 2, 1)
         main_layout.addWidget(image_box, 0, 1)
-        main_layout.addWidget(forecast_box, 1, 0, 1, 2)
+        main_layout.addWidget(forecast_box, 1, 1, 1, 1)
 
         self.setLayout(main_layout)
 
