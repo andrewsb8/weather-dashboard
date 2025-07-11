@@ -40,7 +40,8 @@ class WeatherDashboard(QWidget):
 
         self.setWindowTitle("Weather Dashboard")
         main_layout = QGridLayout()
-        main_layout.setContentsMargins(50, 50, 50, 50)
+        # left, top, right, bottom
+        main_layout.setContentsMargins(50, 50, 50, 20)
 
         # --- Current Weather Container ---
         current_weather_box = QGroupBox("Current Weather")
