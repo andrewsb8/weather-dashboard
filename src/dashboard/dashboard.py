@@ -45,65 +45,67 @@ class WeatherDashboard(QWidget):
 
         # --- Current Weather Container ---
         current_weather_box = QGroupBox("Current Weather")
+        current_weather_box.setAlignment(Qt.AlignHCenter)
         current_weather_layout = QVBoxLayout()
         current_weather_layout.addWidget(
             QLabel(
                 f"Last Updated: {w['current']['time'].split('T')[0]} {w['current']['time'].split('T')[1]}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             ImageWidget(
                 wi["current"], svg=True, size=(60, 60)
-            ).svgmap
+            ).svgmap, alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Temperature / Feels Like: {w['current']['temperature_2m']} {w['current_units']['temperature_2m']} / "
                 f"{w['current']['apparent_temperature']} {w['current_units']['temperature_2m']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Humidity: {w['current']['relative_humidity_2m']} {w['current_units']['relative_humidity_2m']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
-            QLabel(f"Max UV Index: {w['daily']['uv_index_max'][0]}")
+            QLabel(f"Max UV Index: {w['daily']['uv_index_max'][0]}"), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Cloud Cover: {w['current']['cloud_cover']} {w['current_units']['cloud_cover']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Wind Speed: {w['current']['wind_speed_10m']} {w['current_units']['wind_speed_10m']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Total Precipitation: {w['current']['precipitation']} {w['current_units']['precipitation']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
-            QLabel(f"Rain: {w['current']['rain']} {w['current_units']['rain']}")
+            QLabel(f"Rain: {w['current']['rain']} {w['current_units']['rain']}"), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
             QLabel(
                 f"Snowfall: {w['current']['snowfall']} {w['current_units']['snowfall']}"
-            )
+            ), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
-            QLabel(f"Sunrise: {w['daily']['sunrise'][0].split('T')[1]}")
+            QLabel(f"Sunrise: {w['daily']['sunrise'][0].split('T')[1]}"), alignment=Qt.AlignCenter
         )
         current_weather_layout.addWidget(
-            QLabel(f"Sunset: {w['daily']['sunset'][0].split('T')[1]}")
+            QLabel(f"Sunset: {w['daily']['sunset'][0].split('T')[1]}"), alignment=Qt.AlignCenter
         )
 
         current_weather_box.setLayout(current_weather_layout)
 
         # --- Image Container ---
         image_box = QGroupBox("Weather Image")
+        image_box.setAlignment(Qt.AlignHCenter)
         image_layout = QVBoxLayout()
         image_layout.addWidget(
             ImageWidget(wi["w_img"], svg=False, size=(200, 200))
@@ -112,32 +114,33 @@ class WeatherDashboard(QWidget):
 
         # --- Forecast Container ---
         forecast_box = QGroupBox("Two Day Forecast")
+        forecast_box.setAlignment(Qt.AlignHCenter)
         forecast_layout = QHBoxLayout()
         labels = ["Today", "Tomorrow"]
         for i in range(2):
             day_layout = QVBoxLayout()
-            day_layout.addWidget(QLabel(labels[i]))
-            day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"))
+            day_layout.addWidget(QLabel(labels[i]), alignment=Qt.AlignCenter)
+            day_layout.addWidget(QLabel(f"{w['daily']['time'][i]}"), alignment=Qt.AlignCenter)
             day_layout.addWidget(
                 ImageWidget(
                     wi["daily"][i], svg=True, size=(60, 60)
-                ).svgmap
+                ).svgmap, alignment=Qt.AlignCenter
             )
             day_layout.addWidget(
                 QLabel(
                     f"H/L: {w['daily']['temperature_2m_max'][i]}/{w['daily']['temperature_2m_min'][i]}"
-                )
+                ), alignment=Qt.AlignCenter
             )
-            day_layout.addWidget(QLabel(f"Max UV: {w['daily']['uv_index_max'][i]}"))
+            day_layout.addWidget(QLabel(f"Max UV: {w['daily']['uv_index_max'][i]}"), alignment=Qt.AlignCenter)
             day_layout.addWidget(
                 QLabel(
                     f"Precip %: {w['daily']['precipitation_probability_max'][i]}{w['daily_units']['precipitation_probability_max']}"
-                )
+                ), alignment=Qt.AlignCenter
             )
             day_layout.addWidget(
                 QLabel(
                     f"Sunup: {w['daily']['sunrise'][i].split('T')[1]}"
-                )
+                ), alignment=Qt.AlignCenter
             )
             forecast_col = QWidget()
             forecast_col.setLayout(day_layout)
