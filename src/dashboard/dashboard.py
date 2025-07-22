@@ -117,14 +117,14 @@ class WeatherDashboard(QWidget):
         current_weather_box.setLayout(current_weather_layout)
 
         # --- Image Container ---
-        image_box = QGroupBox("Weather Image")
+        image_box = QGroupBox()
         image_box.setAlignment(Qt.AlignHCenter)
         image_layout = QVBoxLayout()
         image_layout.addWidget(ImageWidget(wi["w_img"], svg=False, size=(400, 400)))
         image_box.setLayout(image_layout)
 
         # --- Forecast Container ---
-        forecast_box = QGroupBox("Two Day Forecast")
+        forecast_box = QGroupBox()
         forecast_box.setAlignment(Qt.AlignHCenter)
         forecast_layout = QHBoxLayout()
         labels = ["Today", "Tomorrow"]
