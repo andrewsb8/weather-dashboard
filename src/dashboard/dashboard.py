@@ -43,8 +43,8 @@ class WeatherDashboard(QWidget):
         self.setWindowTitle("Weather Dashboard")
         main_layout = QGridLayout()
         # left, top, right, bottom
-        main_layout.setContentsMargins(50, 20, 50, 20)
-        font_size = 12
+        main_layout.setContentsMargins(50, 30, 50, 10)
+        font_size = 15
         font_type = "Sans Serif"
 
         # --- Current Weather Container ---
@@ -107,7 +107,7 @@ class WeatherDashboard(QWidget):
         )
         curr_weath_col_two.addWidget(
             TextWidget(
-                text=f"Total Precipitation: {w['current']['precipitation']} {w['current_units']['precipitation']}",
+                text=f"Tot Precip: {w['current']['precipitation']} {w['current_units']['precipitation']}",
                 font=font_type,
                 size=font_size,
             ),
