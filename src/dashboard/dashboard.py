@@ -50,7 +50,7 @@ class WeatherDashboard(QWidget):
         curr_weath_col_one = QVBoxLayout()
         curr_weath_col_one.addWidget(
             ImageWidget(
-                wi["current"], svg=True, size=(60, 60)
+                wi["current"], svg=True, size=(150, 150)
             ).svgmap, alignment=Qt.AlignCenter
         )
         curr_weath_col_one.addWidget(
@@ -88,7 +88,7 @@ class WeatherDashboard(QWidget):
         image_box.setAlignment(Qt.AlignHCenter)
         image_layout = QVBoxLayout()
         image_layout.addWidget(
-            ImageWidget(wi["w_img"], svg=False, size=(200, 200))
+            ImageWidget(wi["w_img"], svg=False, size=(400, 400))
         )
         image_box.setLayout(image_layout)
 
@@ -102,7 +102,7 @@ class WeatherDashboard(QWidget):
             day_layout.addWidget(QLabel(labels[i]), alignment=Qt.AlignCenter)
             day_layout.addWidget(
                 ImageWidget(
-                    wi["daily"][i], svg=True, size=(60, 60)
+                    wi["daily"][i], svg=True, size=(100, 100)
                 ).svgmap, alignment=Qt.AlignCenter
             )
             day_layout.addWidget(
@@ -114,11 +114,6 @@ class WeatherDashboard(QWidget):
             day_layout.addWidget(
                 QLabel(
                     f"Precip %: {w['daily']['precipitation_probability_max'][i]}{w['daily_units']['precipitation_probability_max']}"
-                ), alignment=Qt.AlignCenter
-            )
-            day_layout.addWidget(
-                QLabel(
-                    f"Sunup: {w['daily']['sunrise'][i].split('T')[1]}"
                 ), alignment=Qt.AlignCenter
             )
             forecast_col = QWidget()
