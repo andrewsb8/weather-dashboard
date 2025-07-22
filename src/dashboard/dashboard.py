@@ -44,7 +44,7 @@ class WeatherDashboard(QWidget):
         main_layout = QGridLayout()
         # left, top, right, bottom
         main_layout.setContentsMargins(50, 30, 50, 10)
-        font_size = 15
+        font_size = 24
         font_type = "Sans Serif"
 
         # --- Current Weather Container ---
