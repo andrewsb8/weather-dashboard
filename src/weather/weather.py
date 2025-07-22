@@ -25,9 +25,15 @@ class Weather(object):
 
     def get_images(self):
         self.weather_imgs = {}
-        self.weather_imgs["current"] = self.get_current_weather_img_path(path="./images/weather-icons/")
-        self.weather_imgs["daily"] = self.get_forecast_img_paths(path="./images/weather-icons/")
-        self.weather_imgs["w_img"] = self.get_weather_img_path(path="./images/winter-images/")
+        self.weather_imgs["current"] = self.get_current_weather_img_path(
+            path="./images/weather-icons/"
+        )
+        self.weather_imgs["daily"] = self.get_forecast_img_paths(
+            path="./images/weather-icons/"
+        )
+        self.weather_imgs["w_img"] = self.get_weather_img_path(
+            path="./images/winter-images/"
+        )
 
     def get_current_weather_img_path(self, path):
         if self.weather["current"]["precipitation"] > 20.0:
