@@ -1,4 +1,5 @@
 import sys
+import datetime
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -41,10 +42,12 @@ class WeatherDashboard(QWidget):
         self.setWindowTitle("Weather Dashboard")
         main_layout = QGridLayout()
         # left, top, right, bottom
-        main_layout.setContentsMargins(50, 50, 50, 20)
+        main_layout.setContentsMargins(50, 20, 50, 20)
 
         # --- Current Weather Container ---
-        current_weather_box = QGroupBox(f"Current Weather for {w['current']['time'].split('T')[0]} {w['current']['time'].split('T')[1]}")
+        date = datetime.datetime.strptime(w['current']['time'].split('T')[0], "%Y-%m-%d")
+        normal_date = date.strftime("%B %d %Y")
+        current_weather_box = QGroupBox(f"{normal_date} at {w['current']['time'].split('T')[1]}")
         current_weather_box.setAlignment(Qt.AlignHCenter)
         current_weather_layout = QHBoxLayout()
         curr_weath_col_one = QVBoxLayout()
@@ -55,7 +58,7 @@ class WeatherDashboard(QWidget):
         )
         curr_weath_col_one.addWidget(
             QLabel(
-                f"Temperature / Feels Like: {w['current']['temperature_2m']} {w['current_units']['temperature_2m']} / "
+                f"Temp / Feels: {w['current']['temperature_2m']} {w['current_units']['temperature_2m']} / "
                 f"{w['current']['apparent_temperature']} {w['current_units']['temperature_2m']}"
             ), alignment=Qt.AlignCenter
         )
