@@ -54,7 +54,7 @@ class WeatherDashboard(QWidget):
 
         curr_weath_col_one.addWidget(
             TextWidget(
-                text=f"{w["normal_date"]} at {w['current']['time'].split('T')[1]}",
+                text=f"{w['normal_date']} at {w['current']['time'].split('T')[1]}",
                 font=font_type,
                 size=font_size,
             ),
