@@ -1,5 +1,4 @@
 import sys
-import datetime
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -53,13 +52,9 @@ class WeatherDashboard(QWidget):
         current_weather_layout = QHBoxLayout()
         curr_weath_col_one = QVBoxLayout()
 
-        date = datetime.datetime.strptime(
-            w["current"]["time"].split("T")[0], "%Y-%m-%d"
-        )
-        normal_date = date.strftime("%B %d %Y")
         curr_weath_col_one.addWidget(
             TextWidget(
-                text=f"{normal_date} at {w['current']['time'].split('T')[1]}",
+                text=f"{w["normal_date"]} at {w['current']['time'].split('T')[1]}",
                 font=font_type,
                 size=font_size,
             ),
