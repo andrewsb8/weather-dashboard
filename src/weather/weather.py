@@ -47,6 +47,10 @@ class Weather(object):
     def get_current_weather_img_path(self, path):
         if self.weather["current"]["precipitation"] > 20.0:
             return path + "wi-rain.svg"
+        elif self.weather["current"]["cloud_cover"] > 20 and self.weather["current"]["cloud_cover"] < 50:
+            return path + "wi-day-cloudy.svg"
+        elif self.weather["current"]["cloud_cover"] > 50:
+            return path + "wi-cloudy.svg"
         else:
             return path + "wi-day-sunny.svg"
 
@@ -55,6 +59,10 @@ class Weather(object):
         for i in range(2):
             if self.weather["daily"]["precipitation_probability_max"][i] > 50.0:
                 img_list.append(path + "wi-rain.svg")
+            elif self.weather["daily"]["weather_code"] == 2:
+                img_list.append(path + "wi-day-cloudy.svg")
+            elif self.weather["daily"]["weather_code"] == 3:
+                img_list.append(path + "wi-cloudy.svg")
             else:
                 img_list.append(path + "wi-day-sunny.svg")
         return img_list
