@@ -209,11 +209,11 @@ class Weather(object):
             path = path + "cool-images/"
         elif (
             self.weather["daily"]["temperature_2m_max"][0] < 50
-            and self.weather["daily"]["temperature_2m_max"][0] >= 30
+            and self.weather["daily"]["temperature_2m_max"][0] > 32
         ):
             path = path + "cold-images/"
-        elif self.weather["daily"]["temperature_2m_max"][0] < 30:
-            path = path + "cold-images/"
+        elif self.weather["daily"]["temperature_2m_max"][0] <= 32:
+            path = path + "really-cold-images/"
 
         files = os.listdir(path)
         # if no files or path added
