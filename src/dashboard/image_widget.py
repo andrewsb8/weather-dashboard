@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import QLabel
-from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtSvg import QSvgWidget
+from PyQt5.QtWidgets import QLabel
 
 
 class ImageWidget(QLabel):
