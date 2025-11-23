@@ -103,19 +103,19 @@ class Weather(object):
                 "desc": "Heavy Freezing Rain",
             },
             71: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Slight Snow",
             },
             73: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Moderate Snow",
             },
             75: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Heavy Snow",
             },
             77: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Snow Grains",
             },
             80: {
@@ -131,11 +131,11 @@ class Weather(object):
                 "desc": "Violent Rain Showers",
             },
             85: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Slight Snow Showers",
             },
             86: {
-                "img": "snow",
+                "img": "wi-snow.svg",
                 "desc": "Moderate Snow Showers",
             },
             95: {
