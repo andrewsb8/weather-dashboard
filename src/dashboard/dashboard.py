@@ -1,18 +1,20 @@
 import sys
-from PyQt5.QtWidgets import (
-    QApplication,
-    QWidget,
-    QLabel,
-    QVBoxLayout,
-    QHBoxLayout,
-    QGridLayout,
-    QGroupBox,
-)
+
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import (
+    QApplication,
+    QGridLayout,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QVBoxLayout,
+    QWidget,
+)
+
 from src.dashboard.image_widget import ImageWidget
-from src.weather.weather import Weather
 from src.dashboard.text_widget import TextWidget
+from src.weather.weather import Weather
 
 
 class WeatherDashboard(QWidget):
@@ -62,6 +64,14 @@ class WeatherDashboard(QWidget):
         )
         curr_weath_col_one.addWidget(
             ImageWidget(wi["current"], svg=True, size=(150, 150)).svgmap,
+            alignment=Qt.AlignCenter,
+        )
+        curr_weath_col_one.addWidget(
+            TextWidget(
+                text=f"Weather: {self.weather_obj.weather_code_dict[self.weather_obj.weather['current']['weather_code']]['desc']}",
+                font=font_type,
+                size=font_size,
+            ),
             alignment=Qt.AlignCenter,
         )
         curr_weath_col_one.addWidget(
@@ -131,6 +141,14 @@ class WeatherDashboard(QWidget):
             )
             day_layout.addWidget(
                 ImageWidget(wi["daily"][i], svg=True, size=(100, 100)).svgmap,
+                alignment=Qt.AlignCenter,
+            )
+            day_layout.addWidget(
+                TextWidget(
+                    text=f"{self.weather_obj.weather_code_dict[self.weather_obj.weather['daily']['weather_code'][i]]['desc']}",
+                    font=font_type,
+                    size=font_size,
+                ),
                 alignment=Qt.AlignCenter,
             )
             day_layout.addWidget(
