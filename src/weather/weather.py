@@ -24,9 +24,16 @@ class Weather(object):
                 trial = load(file)
             return trial
         else:
-            return get(
-                "https://api.open-meteo.com/v1/forecast?latitude=39.92026&longitude=-75.15935&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,precipitation_sum,precipitation_hours&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,wind_speed_10m,wind_direction_10m,precipitation,rain,snowfall,weather_code,cloud_cover&timezone=America%2FNew_York&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
-            ).json()
+            url = self.load_api_url()
+            return get(url).json()
+
+    def load_api_url(self):
+        with open("src/weather/api_config.json") as f:
+            config = load(f)
+        url = config["url"]
+        url = url.replace("[LAT]", str(config["latitude"]))
+        url = url.replace("[LON]", str(config["longitude"]))
+        return url
 
     def get_normal_date(self):
         date = datetime.datetime.strptime(

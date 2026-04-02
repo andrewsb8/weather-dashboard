@@ -11,6 +11,10 @@ To see available options, use: ```python weather-dashboard.py -h```
 
 You can set various settings such as update frequency and screen size. You can also take a screenshot of the dashboard instead of continuously updating a desktop application window (will be relevant below).
 
+# Weather API URL
+
+A json configuration file is available at ```src/weather/api_config.json``` which allows you to specify the longitude and latitude. The provided url in the config has ```[LAT]``` and ```[LON]``` in place of the numbers. The code replaces these with the numbers in the config, which allows for simple updating of location without generating a whole new API url on the Open Meteo website. A replacement url with longitude/latitude numbers (i.e. no ```[LAT]```) will work.
+
 # Adding Images
 
 In ```images/``` there are directories to add custom weather-specific images and examples for each category are provided. The application will pick one of the images based on weather conditions and the season at each update.
