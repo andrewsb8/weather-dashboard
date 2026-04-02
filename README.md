@@ -13,7 +13,7 @@ You can set various settings such as update frequency and screen size. You can a
 
 # Weather API URL
 
-A json configuration file is available at ```src/weather/api_config.json``` which allows you to specify the longitude and latitude. The provided url in the config has ```[LAT]``` and ```[LON]``` in place of the numbers. The code replaces these with the numbers in the config, which allows for simple updating of location without generating a whole new API url on the Open Meteo website. A replacement url with longitude/latitude numbers (i.e. no ```[LAT]```) will work.
+A json configuration file is available at ```src/weather/api_config.json``` which allows you to specify the longitude and latitude. The provided url in the config has ```[LAT]``` and ```[LON]``` in place of the numbers. The code replaces these with the numbers in the config, which allows for simple updating of location without editing strings directly or generating a whole new API url on the Open Meteo website. A replacement url with longitude/latitude numbers (i.e. no ```[LAT]```) will still work.
 
 # Adding Images
 
