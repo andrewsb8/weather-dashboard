@@ -19,7 +19,7 @@ class Config(object):
         self.parser.add_argument(
             "--update",
             action="store_true",
-            help="Use test data instead of using weather API.",
+            help="If specified, the dashbaord will update according to interval specified by -t.",
         )
         self.parser.add_argument(
             "-t",
