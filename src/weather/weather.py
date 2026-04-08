@@ -240,5 +240,8 @@ class Weather(object):
         with open("json/special_dates.json") as f:
             data = load(f)
         for key in data.keys():
-            if key == self.weather["normal_date"]:
+            # get month and day
+            date_entries = self.weather["normal_date"].split()
+            date = " ".join(date_entries[0:2])
+            if key == date:
                 return data[key]
