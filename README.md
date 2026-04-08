@@ -1,29 +1,41 @@
 # Weather Dashboard
 
-This project is a small weather dashboard made using python and the following tools:
+This project is a small weather dashboard I made for my partner with a specific goal of displaying custom images they would really enjoy. Here's what it looks like:
+
+![image info](./images/dashboard_visual/482026.jpg)
+
+I made the dashboard with python and the following tools:
 
 - PyQt5 for GUI
 - Open Meteo for weather API: https://open-meteo.com/
 
-# General Usage
+## General Usage
 
 To see available options, use: ```python weather-dashboard.py -h```
 
 You can set various settings such as update frequency and screen size. You can also take a screenshot of the dashboard instead of continuously updating a desktop application window (will be relevant below).
 
-# Weather API URL
-
-A json configuration file is available at ```src/weather/api_config.json``` which allows you to specify the longitude and latitude. The provided url in the config has ```[LAT]``` and ```[LON]``` in place of the numbers. The code replaces these with the numbers in the config, which allows for simple updating of location without editing strings directly or generating a whole new API url on the Open Meteo website. A replacement url with longitude/latitude numbers (i.e. no ```[LAT]```) will still work.
-
-# Adding Images
+## Adding Images
 
 In ```images/``` there are directories to add custom weather-specific images and examples for each category are provided. The application will pick one of the images based on weather conditions and the season at each update.
+
+## Customization
+
+There are various json files in ```json/``` for adding custom image directories for special dates and modifying the weather api.
+
+## Testing 
+
+When making frequent changes, to avoid overloading the free API provider, a test json file received from the api is in ```tests/test_files/example_1.json```. You can load the dashboard using this test file with:
+
+```python weather-dashboard --test```.
+
+If you change the weather API details, you should export a new json response to a file for testing with the correct data you would like to display.
 
 # Setup on Raspberry Pi Zero 2 W and E-Ink Screen
 
 ## Hardware Setup
 
-I followed this tutorial mostly, but wanted to make the software myself: https://www.youtube.com/watch?v=65sda565l9Y.
+I followed this (tutorial)[https://www.youtube.com/watch?v=65sda565l9Y] mostly, but wanted to make the software myself.
 
 The hardware:
 - Raspberry Pi Zero 2 W

@@ -28,7 +28,7 @@ class Weather(object):
             return get(url).json()
 
     def load_api_url(self):
-        with open("src/weather/api_config.json") as f:
+        with open("json/weather_api_config.json") as f:
             config = load(f)
         url = config["url"]
         url = url.replace("[LAT]", str(config["latitude"]))
@@ -184,7 +184,10 @@ class Weather(object):
         return img_list
 
     def get_dress_img_path(self, path):
-        if self.weather["daily"]["temperature_2m_max"][0] >= 95:
+        special_date = self.check_special_date()
+        if special_date is not None:
+            path = special_date
+        elif self.weather["daily"]["temperature_2m_max"][0] >= 95:
             path = path + "really-hot-images/"
         elif (
             self.weather["daily"]["temperature_2m_max"][0] >= 85
@@ -232,3 +235,10 @@ class Weather(object):
                 file = os.path.join(path, files[rand])
                 if os.path.isfile(file):
                     return file
+
+    def check_special_date(self):
+        with open("json/special_dates.json") as f:
+            data = load(f)
+        for key in data.keys():
+            if key == self.weather["normal_date"]:
+                return data[key]
