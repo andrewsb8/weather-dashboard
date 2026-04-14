@@ -1,10 +1,15 @@
 import argparse
 
+from src.logging.logging import Log
+
 
 class Config(object):
     def __init__(self, args=None):
-        self.__prog__ = "weather-dashboard.py"
+        self.__prog__ = "weather_dashboard.py"
         self.args = self._parse(args)
+        log = Log()
+        self.log = log._create_log(self.args.logfn)
+        log._log_args(self.log, arg_list=vars(self.args))
 
     def _parse(self, args=None):
         """
@@ -15,6 +20,13 @@ class Config(object):
             prog=self.__prog__,
             description="A PyQt5 Application Displaying Weather Information",
             epilog="Please report bugs to: https://github.com/andrewsb8/weather-dashboard/issues",
+        )
+        self.parser.add_argument(
+            "-l",
+            "--logfn",
+            type=str,
+            default="./weather-dashboard.log",
+            help="Path and filename of log file. Default: ./weather-dashboard.log",
         )
         self.parser.add_argument(
             "--update",
