@@ -8,7 +8,8 @@ from requests import get
 
 
 class Weather(object):
-    def __init__(self, testkw=False):
+    def __init__(self, log, testkw=False):
+        self.log = log
         self.weather = self.get_weather_json(testkw=testkw)
         self.weather["normal_date"] = self.get_normal_date()
         self.weather_code_dict = self.get_weather_code_dict()
@@ -227,13 +228,22 @@ class Weather(object):
 
         files = os.listdir(path)
         # if no files or path added
-        if path == "./images/" or len(files) == 0:
+        if path == "./images/":
+            self.log.error(
+                f"ERROR: No path selected from temperature data criteria or special dates. Defaulting to: {path + 'confused-image/1.jpg'}"
+            )
+            return path + "confused-image/1.jpg"
+        elif len(files) == 0:
+            self.log.error(
+                f"ERROR: No files in chosen directory. Defaulting to: {path + 'confused-image/1.jpg'}"
+            )
             return path + "confused-image/1.jpg"
         else:
             while True:
                 rand = randint(0, len(files) - 1)
                 file = os.path.join(path, files[rand])
                 if os.path.isfile(file):
+                    self.log.info(f"Custom image used: {file}")
                     return file
 
     def check_special_date(self):

@@ -30,7 +30,7 @@ class WeatherDashboard(QWidget):
             QTimer.singleShot(1000, self.take_screenshot_and_exit)
 
     def init_dashboard(self):
-        self.weather_obj = Weather(testkw=self.config.args.test)
+        self.weather_obj = Weather(self.config.log, testkw=self.config.args.test)
         if self.config.args.size is not None:
             self.set_window_size(self.config.args.size)
         else:
