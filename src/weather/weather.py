@@ -27,7 +27,10 @@ class Weather(object):
         else:
             url = self.load_api_url()
             self.log.info(f"Open Meteo API URL: {url}")
-            return get(url).json()
+            api_data = get(url)
+            self.log.info(f"API Status Code: {api_data.status_code}")
+            self.log.info(f"API Response Content: {api_data.content}")
+            return api_data.json()
 
     def load_api_url(self):
         with open("json/weather_api_config.json") as f:
