@@ -26,6 +26,7 @@ class Weather(object):
             return trial
         else:
             url = self.load_api_url()
+            self.log.info(f"Open Meteo API URL: {url}")
             return get(url).json()
 
     def load_api_url(self):
