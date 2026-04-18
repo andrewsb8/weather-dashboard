@@ -25,24 +25,14 @@ class Weather(object):
                 trial = load(file)
             return trial
         else:
-            url = self.load_api_url()
+            with open("json/weather_api_config.json") as f:
+                config = load(f)
+            url = config["url"]
             self.log.info(f"Open Meteo API URL: {url}")
             api_data = get(url)
-            if api_data.status_code == 502:
-                self.log.exception(
-                    f"Received status code {api_data.status_code} from API. Exiting!"
-                )
             self.log.info(f"API Status Code: {api_data.status_code}")
             self.log.info(f"API Response Content: {api_data.content}")
             return api_data.json()
-
-    def load_api_url(self):
-        with open("json/weather_api_config.json") as f:
-            config = load(f)
-        url = config["url"]
-        url = url.replace("[LAT]", str(config["latitude"]))
-        url = url.replace("[LON]", str(config["longitude"]))
-        return url
 
     def get_normal_date(self):
         date = datetime.datetime.strptime(
