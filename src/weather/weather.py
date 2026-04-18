@@ -28,6 +28,10 @@ class Weather(object):
             url = self.load_api_url()
             self.log.info(f"Open Meteo API URL: {url}")
             api_data = get(url)
+            if api_data.status_code == 502:
+                self.log.exception(
+                    f"Received status code {api_data.status_code} from API. Exiting!"
+                )
             self.log.info(f"API Status Code: {api_data.status_code}")
             self.log.info(f"API Response Content: {api_data.content}")
             return api_data.json()
