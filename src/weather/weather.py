@@ -1,6 +1,7 @@
 import datetime
 import os
 import sys
+import time
 from json import load
 from random import randint
 
@@ -29,7 +30,9 @@ class Weather(object):
                 config = load(f)
             url = config["url"]
             self.log.info(f"Open Meteo API URL: {url}")
-            api_data = get(url)
+            start = time.time()
+            api_data = get(url, timeout=(5, 60))
+            self.log.info(f"Time for API request: {time.time() - start}")
             self.log.info(f"API Status Code: {api_data.status_code}")
             self.log.info(f"API Response Content: {api_data.content}")
             return api_data.json()
